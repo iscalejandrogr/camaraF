@@ -9,20 +9,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Documento sin título</title>
 <script type="text/javascript">
-//$(document).raedy(function (){
-    document.addEventListener("deviceready", function(){
-      //navigator.notification.alert("funciona");
-      $("#capturaFoto").tap(function(){
-			navigator.device.capture.captureImage(function (mediaFiles){
-				path=mediaFiles[0].fullPath;
-	 			$("#imagen").append("<img src="+path+" width='100%' />").attr("rel",path);
-		}, function (error){
-	 		 	navigator.notification.alert("Error"+error.code, null, "Captura de Error");
-		}, {limit:1});
-      });
-    }, false);
-
-//});
+document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady(){
+		$("#btnTomarFoto").tap(function (){//Capturar fotografia
+            	navigator.device.capture.captureImage(function(mediaFiles){
+			path = mediaFiles[0].fullPath;
+			$('#regFoto').append('<br><img id="imagen" src="'+path+'" width="100%" />').attr('rel',path);
+	    },function(error){
+			navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+	    },{limit:1});            
+         }); 
+	}
 </script>
 <style type="text/css">
 	p{
@@ -32,14 +29,14 @@
 </head>
 
 <body>
-<div data-role="page" id="principal" data-theme="b">
+<div data-role="page" id="principal" data-theme="a">
 	<div data-role="header">
     	<p>Camara</p>
     </div> 
     <div data-role="content">
     	<p>Acesando a camara</p>
-        <input type="button" value="Tomar Foto" id="capturaFoto" />
-        <div id="imagen"></div>
+        <input type="button" value="Tomar Foto" id="btnTomarFoto" />
+        <div id="regFoto"></div>
     </div>
     <div data-role="footer" data-position="fixed">
     	<p>Pie de aplicación</p>
