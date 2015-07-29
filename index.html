@@ -9,20 +9,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Documento sin título</title>
 <script type="text/javascript">
-$(document).raedy(function (){
+//$(document).raedy(function (){
     document.addEventListener("deviceready", function(){
       //navigator.notification.alert("funciona");
       $("#capturaFoto").tap(function(){
-	navigator.device.capture.captureImage(function (mediaFiles){
-	 path=mediaFiles[0].fullPath;
-	 $("#imagen").append("<img src="+path+" width='100%' />").attr("rel",path);
-	}, function (error){
-	  navigator.notification.alert("Error"+error.code, null, "CAtura de Error");
-	}, {limit:1});
+			navigator.device.capture.captureImage(function (mediaFiles){
+				path=mediaFiles[0].fullPath;
+	 			$("#imagen").append("<img src="+path+" width='100%' />").attr("rel",path);
+		}, function (error){
+	 		 	navigator.notification.alert("Error"+error.code, null, "Captura de Error");
+		}, {limit:1});
       });
     }, false);
 
-});
+//});
 </script>
 <style type="text/css">
 	p{
